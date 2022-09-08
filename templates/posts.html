@@ -1,0 +1,58 @@
+<html>
+        <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <meta http-equiv="X-UA-Compatible" content="ie=edge">
+                <title>FoodSwap</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+            </head>
+            
+    <section class="height=100%" style="background-color: #9A616D;">
+        <div class="container py-5" style="background-color: #9A616D;">
+            <div class="row d-flex justify-content-center align-items-center">
+              <h1 class="fw-bold mt-1 text-center" style="letter-spacing: 2px;">Browse All Offerings
+              </h1>
+                <form action="/profile" style="display:inline-block">
+                  <input type="hidden" name="user_id" value={{user_id}}>
+                  <input type="image" src="https://i.ibb.co/X2wXyjN/profile.png" style="height: 5%; float: right;"/>
+                </form>
+                <form action="/post_creation_portal" style="display:inline-block">
+                  <input type="hidden" name="user_id" value={{user_id}}>
+                  <input type="image" src="https://i.ibb.co/p05BT3j/plus-sign.png" style="height: 5%; float: right;"/>
+                </form>
+                <!-- Button trigger modal -->
+                
+          </div>
+          <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col col-xl-10">
+                {% for key, value in posts.items() %}
+                <div class="card" style="border-radius: 1rem; margin-bottom: 1%;">
+                    <div class="row g-0">
+                      <div class="col-md-3 col-lg-5 d-none d-md-block">
+                        <img src={{ value.img_url }}
+                          alt="Image Unavailable" class="img-fluid" style="border-radius: 1rem 0 0 1rem" />
+                      </div>
+                      <div class="col-md-3 col-lg-7 d-flex align-items-center">
+                        <div class="card-body p-4 p-lg-5 text-black">
+                            <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Offered by: {{value.user}}</h5>
+                            <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Description: {{value.description}}</h5>
+                            <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Dietary Info: {{value.dietary_info}}</h5>
+                           <form action="/reserve">
+                            <input type="hidden" name="post_id" value={{key}}>
+                            <input type="hidden" name="user_id" value={{user_id}}>
+                            <div class="pt-1 mb-4">
+                              <button class="btn btn-dark btn-lg btn-block" type="submit">Reserve</button>
+                            </div>
+                             <!-- <input type="submit" value="Reserve"/> -->
+                           </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  {% endfor %}
+            </div>
+          </div>
+        </div>
+      </section>
+
+</html>
